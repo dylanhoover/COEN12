@@ -17,7 +17,7 @@ int main()
     SET *college;
     college = createSet();
 
-    for(i = 0; i < 4; i++)
+    for(i = 0; i < 1000; i++)
     {
         firstNum = (rand() % (2+1-1)+1);
         id = firstNum + idPrev;
@@ -31,10 +31,10 @@ int main()
     //int sAge = (rand() % 23);
    // searchAge(college, sAge);
 
-    int dID = (rand() % (30+1-18)+18);
+    int dID = (rand() % (2000+1-1)+1);
     deleteElement(college, dID);
 
-   // maxAgeGap(college);
+    maxAgeGap(college);
 
     destroy(college);
 
