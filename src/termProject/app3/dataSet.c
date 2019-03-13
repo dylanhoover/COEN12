@@ -159,6 +159,13 @@ void insertElement(SET *sp, int age, int ID)
             }
             q = q->next;
         } while (q->next != sp->head);
+	new->next = sp->head;
+	new->prev = sp->head->prev;
+	sp->head->prev->next = new;
+	sp->head->prev = new;
+	printf("Student insered\n");
+	sp->count++;
+	return;
     }
    
 }
