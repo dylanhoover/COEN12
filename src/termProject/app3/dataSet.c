@@ -140,6 +140,7 @@ void insertElement(SET *sp, int age, int ID)
             sp->head->next = new;
             new->prev = sp->head;
             new->next = sp->head;
+	    sp->head->prev = new;
             printf("Student inserted\n");
             sp->count++;
             return;
@@ -186,5 +187,6 @@ int maxAgeGap(SET *sp)
     assert(sp != NULL);
     int minAge = sp->head->next->age;
     int maxAge = sp->head->prev->age;
-    return(maxAge - minAge);
+    int gap = (maxAge - minAge);
+    printf("The max age gap is %d\n", gap);
 }
