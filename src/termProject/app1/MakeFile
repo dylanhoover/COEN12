@@ -1,0 +1,14 @@
+CC	= gcc
+CFLAGS	= -g -Wall
+PROGS	= college test
+
+all:	$(PROGS)
+
+clean:;	$(RM) $(PROGS) *.o core
+
+college:	college.c dataSet.c list.c
+	$(CC) -o college college.c dataSet.c list.c
+
+test: test.o
+	$(CC) -o test test.o
+

@@ -1,0 +1,11 @@
+CC = gcc
+CFLAGS = -g
+PROGS = college dataSet
+RM = rm -f
+
+all: $(PROGS)
+
+clean:; $(RM) $(PROGS) *.o core
+
+college: college.c dataSet.c
+	$(CC) $(CFLAGS) -o $@ college.c dataSet.c
