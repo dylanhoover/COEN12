@@ -61,13 +61,13 @@ static void *searchA(SET *sp, int age,  bool *found)
         {
             if(pSearch->age == age)
             {
-                printf("Student with age %d found\n", age);
+                
                 *found = true;
                 return(pSearch);
             }
             pSearch = pSearch->next;
         }
-        printf("Student with age %d does not exist\n", age);
+        
         *found = false;
         return NULL;
 }
@@ -81,24 +81,21 @@ static void *searchB(SET *sp, int ID, bool *found)
     {
         if(pSearch->ID == ID)
             {
-                printf("Student with ID: %d found\n", ID);
                 *found = true;
                 return(pSearch);
             }
             pSearch = pSearch->next;
 
     } while (pSearch != sp->head);
-    printf("Student with ID %d does not exist\n", ID);
+
     *found = false;
 }
 
 void *searchAge(SET *sp, int age)
 {
-    printf("starting search 2\n");
     assert(sp != NULL);
     bool found;
     NODE *fAge = searchA(sp, age, &found);
-    printf("end of search2\n");
     return(fAge);
 }
 
@@ -107,6 +104,10 @@ void *searchID(SET *sp, int ID)
     assert(sp != NULL);
     bool found;
     NODE *fID = searchB(sp, ID, &found);
+    if(found == true)
+        printf("Student with ID: %d found\n", ID);
+    if(found == false)
+        printf("Student with ID %d does not exist\n", ID);
     return(fID);
 }
 
@@ -117,11 +118,12 @@ void insertElement(SET *sp, int age, int ID)
     NODE *new = malloc(sizeof(NODE));
     new->age = age;
     new->ID = ID;
-    printf("starting search\n");
+    //printf("starting search\n");
     NODE *p = searchA(sp, age, &found);
     NODE *q;
     if(found == true)
     {
+        printf("Student with age %d found\n", age);
         printf("Inserting student aged %d with ID: %d\n", age, ID);
         new->next = p->next;
         new->prev = p;
@@ -132,6 +134,7 @@ void insertElement(SET *sp, int age, int ID)
     }
     else
     {
+        printf("Student with age %d does not exist\n", age);
         printf("Inserting student aged %d with ID: %d\n", age, ID);
         q = sp->head->next;
         
@@ -196,4 +199,25 @@ int maxAgeGap(SET *sp)
     int maxAge = sp->head->prev->age;
     int gap = (maxAge - minAge);
     printf("The max age gap is %d\n", gap);
+}
+
+
+void studentSearch(SET *sp, int age, int ID)
+{
+    assert(sp != NULL);
+    bool found1;
+    bool found2;
+    printf("Searching for student aged: %d with ID: %d\n", age ,ID);
+    searchB(sp, ID, &found1);
+    if(found1 == true)
+    {
+        NODE *p = searchID(sp, ID);
+        if(p->age != age)
+            printf("Student with ID:%d and Age: %d does not exist\n", ID, age);
+        else
+            printf("Student found\n");
+    }
+    else
+        printf("Student does not exist\n");
+    
 }

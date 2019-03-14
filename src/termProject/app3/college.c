@@ -28,8 +28,9 @@ int main()
         idCount++;
     }
 
-    //int sAge = (rand() % 23);
-   // searchAge(college, sAge);
+    int sID = (rand() % (2000+1-1)+1);
+    int sAge = (rand() % (30+1-18)+18);
+    studentSearch(college, sAge, sID);
 
     int dID = (rand() % (2000+1-1)+1);
     deleteElement(college, dID);

@@ -10,5 +10,6 @@ extern void *searchID(SET *sp, int ID);
 extern void insertElement(SET *sp, int age, int ID);
 extern void deleteElement(SET *sp, int ID);
 extern int maxAgeGap(SET *sp);
+extern void studentSearch(SET *sp, int age, int ID);
 
 #endif
